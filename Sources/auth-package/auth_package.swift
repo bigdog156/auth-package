@@ -3,6 +3,19 @@
 
 import Supabase
 
-class AuthModule {
-    let idKey: String = "Hello"
+public class AuthModule {
+    static private var shareAuthModule: AuthModule = {
+        let auth = AuthModule.init()
+        return auth
+    }()
+    var idKey: String = "Hello"
+    
+    private init() {
+        print("Init AuthModule")
+        self.idKey = "Success"
+    }
+    
+    class func shared() -> AuthModule {
+        return shareAuthModule
+    }
 }
